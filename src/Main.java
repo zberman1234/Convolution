@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,8 +13,36 @@ public class Main {
         Polynomial ker = new Polynomial(kernel);
         Polynomial polyMult = in.mult(ker);
         
-        System.out.println("Convolution Result: \n" + Arrays.toString(convolution));
-        System.out.println("Polynomial Multiplication Result: \n" + Arrays.toString(polyMult.getCoeffs()));
+        p("Convolution of Input=\n" + Arrays.toString(input) + "\nAnd kernel=\n" + Arrays.toString(kernel) + "\n=\n" + Arrays.toString(convolution));
+        p("Polynomial Multiplication Result of two polynomials with coefficients corresponding to those arrays: \n" + Arrays.toString(polyMult.getCoeffs()));
+
+        p("Enter the size of the array to be convolved: ");
+        Scanner sc = new Scanner(System.in);
+        input = new Complex[sc.nextInt()];
+        p("Enter the array values: ");
+        for (int i = 0; i < input.length; i++) {
+            p("Index " + i + " Real: ");
+            int real = sc.nextInt();
+            p("Index " + i + " Imaginary: ");
+            int imag = sc.nextInt();
+            input[i] = new Complex(real, imag);
+        }
+
+        p("Enter the size of the kernel: ");
+        kernel = new Complex[sc.nextInt()];
+        p("Enter the kernel values: ");
+        for (int i = 0; i < kernel.length; i++) {
+            p("Index " + i + " Real: ");
+            int real = sc.nextInt();
+            p("Index " + i + " Imaginary: ");
+            int imag = sc.nextInt();
+            kernel[i] = new Complex(real, imag);
+        }
+
+        // Perform convolution and print it out
+        convolution = convolve1D(input, kernel);
+        p("Convolution Result: \n" + Arrays.toString(convolution));
+
         
     }
     /**
@@ -40,5 +69,9 @@ public class Main {
         }
 
         return output;
+    }
+
+    public static void p(Object o) {
+        System.out.println(o);
     }
 }
