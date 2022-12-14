@@ -16,7 +16,13 @@ public class Main {
         System.out.println("Polynomial Multiplication Result: \n" + Arrays.toString(polyMult.getCoeffs()));
         
     }
-
+    /**
+     * Perform 1D convolution on two arrays.
+     * 
+     * @param input The input array.
+     * @param kernel The kernel array.
+     * @return The result of the convolution.
+     */
     public static Complex[] convolve1D(Complex[] input, Complex[] kernel) {
         int inputLength = input.length;
         int kernelLength = kernel.length;
